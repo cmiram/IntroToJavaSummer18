@@ -5,27 +5,17 @@ import java.util.Scanner;
  * command line determined by a user prompt of a month and year.
  */
 
-public class DisplayMonthFromDate {
+public class DisplayCalendarYear {
     
     // format for output so all calendar lines will be aligned from a basis
     private static String WEEK_FORMATTER = "%3s  %3s  %3s  %3s  %3s  %3s  %3s";
     
     public static void main(String[] args) {
         // instantiate vars for user input
-        int month, year;
+        int year;
         
         // Use a Scanner to input integer values
         Scanner input = new Scanner(System.in);
-        
-        // loop until user enters a valid month input
-        System.out.print("Enter the month to display: ");
-        do {
-            month = input.nextInt();
-            if(month < 0 || month > 12) {
-                System.out.println("Invalid month value");
-                System.out.print("Please enter a value in range of 1-12: ");
-            }
-        } while(month < 0 || month > 12);
         
         // loop until user enters valid year
         System.out.print("Enter the year to display: ");
@@ -37,8 +27,11 @@ public class DisplayMonthFromDate {
             }
         } while(year < 0);
         
-        // print calendar based on user input
-        printMonthCalendar(month, year);
+        for(int month=1; month<=12; month++) {
+            // print calendar based on user input
+            printMonthCalendar(month, year);
+            System.out.print("\n");
+        }
     }
     
     /**
