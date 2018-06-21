@@ -5,12 +5,14 @@ import java.util.Scanner;
  * command line determined by a user prompt of a month and year.
  */
 
-public class DisplayCalendarYear {
+public class DisplayCalendarYear
+{
     
     // format for output so all calendar lines will be aligned from a basis
     private static String WEEK_FORMATTER = "%3s  %3s  %3s  %3s  %3s  %3s  %3s";
     
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         // instantiate vars for user input
         int year;
         
@@ -40,7 +42,8 @@ public class DisplayCalendarYear {
      * @param month chosen month must be int from 1-12
      * @param year chosen year must be non-negative integer
      */
-    private static void printMonthCalendar(int month, int year) {
+    private static void printMonthCalendar(int month, int year)
+    {
         //print header and month strings to console
         printMonthHeader(month, year);
         printMonthBody(month, year);
@@ -52,7 +55,8 @@ public class DisplayCalendarYear {
      * @param month given month of integer 1-12
      * @param year given year of non-negative integer
      */
-    private static void printMonthHeader(int month, int year) {
+    private static void printMonthHeader(int month, int year)
+    {
         // build first line of header
         String monthYearHeader = buildMonthYearHeader(month, year);
         
@@ -76,7 +80,8 @@ public class DisplayCalendarYear {
      *
      * @return whitespace centered string of form "    MONTH  YEAR"
      */
-    private static String buildMonthYearHeader(int month, int year) {
+    private static String buildMonthYearHeader(int month, int year)
+    {
         String monthStr = getMonthName(month);
         String header = monthStr + "  "  + Integer.toString(year);
         
@@ -93,7 +98,8 @@ public class DisplayCalendarYear {
      * @param month integer between 1-12
      * @param year non-negative integer
      */
-    private static void printMonthBody(int month, int year) {
+    private static void printMonthBody(int month, int year)
+    {
         Object[] weekFormatOptions = {"", "", "", "", "", "", ""};
         int startDay = getStartDay(month, year);
         int daysInMonth = getNumDaysInMonth(month, year);
@@ -105,7 +111,8 @@ public class DisplayCalendarYear {
                 weekFormatOptions[dayOfWeek] = day++ < daysInMonth ?  day : "";
             }
             startDay = 0;
-            System.out.println(String.format(WEEK_FORMATTER, weekFormatOptions));
+            System.out.println(
+                    String.format(WEEK_FORMATTER, weekFormatOptions));
         }
     }
     
@@ -116,9 +123,11 @@ public class DisplayCalendarYear {
      *
      * @return string of the corresponding month int
      */
-    private static String getMonthName(int month) {
-        final String[] months = {"January", "February", "March", "April", "May",
-                "June", "July", "August", "Semptember", "October", "November", "December"};
+    private static String getMonthName(int month)
+    {
+        final String[] months = {"January", "February", "March", "April",
+                "May", "June", "July", "August", "Semptember", "October",
+                "November", "December"};
         return months[month-1];
     }
     
@@ -131,7 +140,8 @@ public class DisplayCalendarYear {
      *
      * @return integer of 1-7 corresponding to Mon-Sun respectively
      */
-    private static int getStartDay(int month, int year) {
+    private static int getStartDay(int month, int year)
+    {
         final int day = 1; // Must be set to day 1 for this to work.  JRD.
         
         // Adjust month number & year to fit Zeller's numbering system
@@ -160,13 +170,16 @@ public class DisplayCalendarYear {
      *
      * @return days in the month taking into account leap years
      */
-    private static int getNumDaysInMonth(int month, int year) {
+    private static int getNumDaysInMonth(int month, int year)
+    {
         // array of days per month
-        final int[] daysPerMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        final int[] daysPerMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30,
+                31, 30, 31};
         
         // if february need to check for leap year
         if(month == 2) {
-            return isLeapYear(year) ? daysPerMonth[month-1] + 1 : daysPerMonth[month-1];
+            return isLeapYear(year) ?
+                    daysPerMonth[month-1] + 1 : daysPerMonth[month-1];
         }
         
         // grab months per day. minus 1 because zero based array
@@ -181,11 +194,11 @@ public class DisplayCalendarYear {
      *
      * @return whether input is leap year or not
      */
-    private static boolean isLeapYear(int year) {
+    private static boolean isLeapYear(int year)
+    {
         // leap year if divisible by 4 but not 100
         // if divisible by 4 and 100 only leap year if divisible by 400
         // short-circuiting first boolean expr ensures correct result
         return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
     }
-    
 }
