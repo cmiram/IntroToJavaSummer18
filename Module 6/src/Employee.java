@@ -16,41 +16,55 @@ public class Employee
     public Employee(int employeeNumber, Name name,
                     Address address, Date hireDate)
     {
+        if(employeeNumber < 1)
+        {
+            throw new IllegalArgumentException("Employee number must be " +
+                    "positive integer");
+        }
+
         this.employeeNumber = employeeNumber;
         this.name = name;
         this.address = address;
         this.hireDate = hireDate;
     }
 
-    public int getEmployeeNumber() {
+    public int getEmployeeNumber()
+    {
         return employeeNumber;
     }
 
-    public void setEmployeeNumber(int employeeNumber) {
+    public void setEmployeeNumber(int employeeNumber)
+    {
         this.employeeNumber = employeeNumber;
     }
 
-    public Name getName() {
+    public Name getName()
+    {
         return name;
     }
 
-    public void setName(Name name) {
+    public void setName(Name name)
+    {
         this.name = name;
     }
 
-    public Address getAddress() {
+    public Address getAddress()
+    {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(Address address)
+    {
         this.address = address;
     }
 
-    public Date getHireDate() {
+    public Date getHireDate()
+    {
         return hireDate;
     }
 
-    public void setHireDate(Date hireDate) {
+    public void setHireDate(Date hireDate)
+    {
         this.hireDate = hireDate;
     }
 

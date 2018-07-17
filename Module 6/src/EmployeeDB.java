@@ -5,7 +5,8 @@
 
 import java.util.Scanner;
 
-public class EmployeeDB {
+public class EmployeeDB
+{
 
     // scanner to read input from users
     private static Scanner input;
@@ -16,11 +17,11 @@ public class EmployeeDB {
         // set employees to enter to -1 initially so we enter the loop
         int numEmployees = -1;
         // loop until user enters a positive number of employees
-        while (numEmployees < 0)
+        while(numEmployees < 0)
         {
             System.out.print("How many employees would you like to enter? ");
             numEmployees = input.nextInt();
-            if (numEmployees < 0)
+            if(numEmployees < 0)
             {
                 System.out.println("Employees to enter must be positive");
             }
@@ -30,14 +31,14 @@ public class EmployeeDB {
         Employee newEmployee;
         Employee[] employees = new Employee[numEmployees];
         // create new employee objects and add them to the array
-        for(int i=0; i<numEmployees; i++)
+        for(int i = 0; i < numEmployees; i++)
         {
             newEmployee = createNewEmployee();
             employees[i] = newEmployee;
         }
 
         // for each employee created write out their information
-        for (Employee employee : employees)
+        for(Employee employee : employees)
         {
             System.out.println("\n");
             System.out.println(employee.toString());
@@ -46,7 +47,7 @@ public class EmployeeDB {
         input.close();
     }
 
-    private static Employee createNewEmployee( )
+    private static Employee createNewEmployee()
     {
         System.out.print("Enter employee id number: ");
         int employeeNumber = input.nextInt();
@@ -92,7 +93,7 @@ public class EmployeeDB {
 
         // ensure zip code is 5 digits long
         String zipCode = "";
-        while (zipCode.length() != 5)
+        while(zipCode.length() != 5)
         {
             System.out.print("Enter employee's zip code: ");
             zipCode = input.next();
