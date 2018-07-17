@@ -101,22 +101,26 @@ public class Pacman
         yDim = -1;
 
         // prompt user for board width until they enter a valid option
-        while(xDim < 1) {
+        while(xDim < 1)
+        {
             System.out.print("Enter X-Dimension for your Pacman board: ");
             xDim = input.nextInt();
             // make sure board width is positive non-zero int
-            if(xDim < 1) {
+            if(xDim < 1)
+            {
                 System.out.println("Invalid dimension. Please enter a " +
                         "positive integer.");
             }
         }
 
         // prompt user for board height until they enter a valid option
-        while(yDim < 1) {
+        while(yDim < 1)
+        {
             System.out.print("Enter Y-Dimension for your Pacman board: ");
             yDim = input.nextInt();
             // make sure board height is positive non-zero int
-            if(yDim < 1) {
+            if(yDim < 1)
+            {
                 System.out.println("invalid dimension. Please enter a " +
                         "positive integer.");
             }
@@ -148,7 +152,8 @@ public class Pacman
         // init to -1 so we enter loop
         int menuCommand = -1;
         // loop until user enters a valid game command
-        while(isNotValidMenuOption(menuCommand)) {
+        while(isNotValidMenuOption(menuCommand))
+        {
             System.out.print("Please enter an int 1-5 menu command: ");
             menuCommand = input.nextInt();
             // prompt user if they entered invalid command
@@ -189,10 +194,10 @@ public class Pacman
             case 5:
                 // immediately return if user ends game
                 return;
-             default:
-                 // should never happen
-                 // but throw error if we try to handle unknown command
-                 throw new IllegalArgumentException("Unknown Menu Command");
+            default:
+                // should never happen
+                // but throw error if we try to handle unknown command
+                throw new IllegalArgumentException("Unknown Menu Command");
         }
     }
 
@@ -212,10 +217,10 @@ public class Pacman
             case DOWN:
                 pacmanDirection = Direction.RIGHT;
                 return;
-             default:
-                 // handle case that enum is extended and turn function
-                 // is not updated with new values
-                 throw new IllegalArgumentException("Unknown Direction");
+            default:
+                // handle case that enum is extended and turn function
+                // is not updated with new values
+                throw new IllegalArgumentException("Unknown Direction");
         }
     }
 
@@ -242,7 +247,8 @@ public class Pacman
         }
     }
 
-    private static void movePacman() {
+    private static void movePacman()
+    {
         // always increment move count regardless if valid move or not
         moveCount++;
 
@@ -264,8 +270,7 @@ public class Pacman
                     pacmanDirection == Direction.RIGHT)
             {
                 newX = getNewDimension();
-            }
-            else
+            } else
             {
                 newY = getNewDimension();
             }
@@ -297,14 +302,17 @@ public class Pacman
             return getNewDimension() >= 0 && getNewDimension() < xDim;
         }
         // pacman can move up or down if new y value is > 0 and < height
-        else {
+        else
+        {
             return getNewDimension() >= 0 && getNewDimension() < yDim;
         }
     }
 
-    private static int getNewDimension() {
+    private static int getNewDimension()
+    {
         // get updated pacman location value
-        switch(pacmanDirection) {
+        switch(pacmanDirection)
+        {
             case LEFT:
                 return pacmanLoc[0] - 1;
             case RIGHT:
@@ -318,36 +326,53 @@ public class Pacman
         }
     }
 
-    private static String getPacman(Direction direction) {
-        switch(direction) {
-            case UP: return "V";
-            case DOWN: return "^";
-            case LEFT: return ">";
-            case RIGHT: return "<";
-            default: throw new IllegalArgumentException("Unknown direction");
+    private static String getPacman(Direction direction)
+    {
+        switch(direction)
+        {
+            case UP:
+                return "V";
+            case DOWN:
+                return "^";
+            case LEFT:
+                return ">";
+            case RIGHT:
+                return "<";
+            default:
+                throw new IllegalArgumentException("Unknown direction");
         }
     }
 
-    private static String getGameObject(GameObject object, Direction direction) {
-        switch(object) {
-            case EMPTY: return ".";
-            case VISITED: return " ";
-            case COOKIE: return "O";
+    private static String getGameObject(GameObject object, Direction direction)
+    {
+        switch(object)
+        {
+            case EMPTY:
+                return ".";
+            case VISITED:
+                return " ";
+            case COOKIE:
+                return "O";
             // pacman's visual depends on direction
-            case PACMAN: return getPacman(direction);
+            case PACMAN:
+                return getPacman(direction);
             // should never happen but throw if game objects is updated
             // and this function isn't updated
-            default: throw new IllegalArgumentException("Unknown object");
+            default:
+                throw new IllegalArgumentException("Unknown object");
         }
     }
 
-    private static GameObject[][] buildInitialGameBoard() {
+    private static GameObject[][] buildInitialGameBoard()
+    {
         // make new 2-d array based on user defined board dimensions
         GameObject[][] board = new GameObject[yDim][xDim];
 
         // loop over x and y arrays
-        for(int i=0; i<yDim; i++) {
-            for(int j=0; j<xDim; j++) {
+        for(int i = 0; i < yDim; i++)
+        {
+            for(int j = 0; j < xDim; j++)
+            {
                 // if random number falls within desired cookie percentage
                 // make position a cookie otherwise it is empty
                 board[i][j] = Math.random() < COOKIE_PERCENT ?
@@ -360,25 +385,28 @@ public class Pacman
         return board;
     }
 
-    private static void drawGameBoard() {
+    private static void drawGameBoard()
+    {
         StringBuilder boardBuilder = new StringBuilder();
 
         // build line of hyphens as a border same length as other lines
-        String border = new String(new char[xDim+1])
+        String border = new String(new char[xDim + 1])
                 .replace("\0", " -");
 
         boardBuilder.append(border).append("\n");
         // iterate over array of arrays to draw board line by line
-        for(GameObject[] row : board) {
+        for(GameObject[] row : board)
+        {
             // add pipe as far left border
             boardBuilder.append("| ");
-            for(GameObject obj : row) {
+            for(GameObject obj : row)
+            {
                 // get visual for game object occupying this board space
                 boardBuilder.append(getGameObject(obj, pacmanDirection));
                 // put a space between items for visual clarity
                 boardBuilder.append(" ");
             }
-            // add pip as far right border
+            // add pipe as far right border
             boardBuilder.append(" |\n");
         }
 
