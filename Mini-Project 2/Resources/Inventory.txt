@@ -1,0 +1,7 @@
+Coke bottle 1 10
+Gatorade bottle 1.5 5
+Milk carton 0.75 5
+Fruit carton 1.25 5
+Ruffles bag 0.75 20
+Peanuts bag 0.5 15
+Crackers bag 1 15
