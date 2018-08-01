@@ -1,21 +1,46 @@
-public class Packaging {
-    
+/***
+ * this class defines a type of packaging for a product
+ */
+
+public class Packaging
+{
+
+    // type of packaging used
     private String type;
-    
-    public Packaging(String type) {
+
+    /***
+     * constructor for a type of packaging
+     * @param type string descriptor of this packaging
+     */
+    public Packaging(String type)
+    {
         this.type = type;
     }
-    
-    public String getType() {
+
+    /***
+     * returns the name of this packaging type
+     * @return string descriptor of packaging type
+     */
+    public String getType()
+    {
         return type;
     }
-    
-    public void setType(String type) {
+
+    /***
+     * sets the type of packaging
+     * @param type string descriptor of packaging type
+     */
+    public void setType(String type)
+    {
         this.type = type;
     }
-    
+
+    /***
+     * {@inheritDoc}
+     */
     @Override
-    public String toString() {
+    public String toString()
+    {
         return type;
     }
 }
