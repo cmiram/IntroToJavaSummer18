@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.geometry.NodeOrientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -58,20 +59,20 @@ public class PizzaBuilderGui extends Application
         // setup 3 buttons for each size and set action when clicked
         largeBtn = new RadioButton();
         largeBtn.setMnemonicParsing(false);
-        largeBtn.setOnAction(e -> onLargeSelected());
+        largeBtn.setOnAction(this::onSizeSelected);
         largeBtn.setText("Large");
     
         mediumBtn = new RadioButton();
         mediumBtn.setMnemonicParsing(false);
-        mediumBtn.setOnAction(e -> onMediumSelected());
+        mediumBtn.setOnAction(this::onSizeSelected);
         mediumBtn.setText("Medium");
         
         smallBtn = new RadioButton();
-        smallBtn.setMnemonicParsing(false);
-        smallBtn.setOnAction(e -> onSmallSelected());
-        smallBtn.setText("Small");
         // set this one to always be selected to start
         smallBtn.setSelected(true);
+        smallBtn.setMnemonicParsing(false);
+        smallBtn.setOnAction(this::onSizeSelected);
+        smallBtn.setText("Small");
     
         // add buttons to bar then add bar to base pane
         sizeBar.getButtons().addAll(largeBtn, mediumBtn, smallBtn);
@@ -152,30 +153,11 @@ public class PizzaBuilderGui extends Application
     /***
      * unselects everything but selected and recalculates the price
      */
-    private void onSmallSelected()
+    private void onSizeSelected(ActionEvent e)
     {
-        mediumBtn.selectedProperty().set(false);
-        largeBtn.selectedProperty().set(false);
-        calculatePrice();
-    }
-
-    /***
-     * unselectes everything but selected and recalculates the price
-     */
-    private void onMediumSelected()
-    {
-        smallBtn.selectedProperty().set(false);
-        largeBtn.selectedProperty().set(false);
-        calculatePrice();
-    }
-
-    /***
-     * unselectes everything but selected and recalculates the price
-     */
-    private void onLargeSelected()
-    {
-        smallBtn.selectedProperty().set(false);
-        mediumBtn.selectedProperty().set(false);
+        sizeBar.getButtons().forEach(button -> ((RadioButton) button)
+                .setSelected(((RadioButton) button).getText()
+                        .equals(((RadioButton) e.getSource()).getText())));
         calculatePrice();
     }
 
